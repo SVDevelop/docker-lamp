@@ -68,12 +68,11 @@ function isAuth ()
 
 				<div class="index-auth">
 					<?php
-					echo isAuth ();
 					if (isAuth () != -1) {
 						if ( isAuth () ) {
-							include('./include/success.php');
+							include($_SERVER['DOCUMENT_ROOT'].'/include/success.php');
 						} else {
-							include('./include/error.php');
+							include($_SERVER['DOCUMENT_ROOT'].'/include/error.php');
 						}
 					}
 
@@ -84,13 +83,13 @@ function isAuth ()
 							<tr>
 								<td class="iat">
 									<label for="login_id">Ваш e-mail:</label>
-									<input id="login_id" size="30" name="login" value="">
+									<input id="login_id" size="30" name="login" value="<?=empty($_POST['login']) ? '' : $_POST['login']; ?>">
 								</td>
 							</tr>
 							<tr>
 								<td class="iat">
 									<label for="password_id">Ваш пароль:</label>
-									<input id="password_id" size="30" name="password" type="password" value="">
+									<input id="password_id" size="30" name="password" type="password" value="<?=@$_POST['password'];?>">
 								</td>
 							</tr>
 							<tr>

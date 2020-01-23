@@ -1,1 +1,1 @@
-<?= infophp();
+<?= phpinfo();

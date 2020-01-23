@@ -127,6 +127,7 @@ a:hover {
 .footer a {
     color: #ffffff;
 }
+
 .footer a:hover {
     color: #cccccc;
 }
@@ -136,7 +137,7 @@ a:hover {
     margin: 0 0 10px 0;
     padding: 0 10px 0 0;
 }
-    
+
 .project-folders-v {
     margin: 0;
     padding: 0;
@@ -191,5 +192,21 @@ a:hover {
 }
 
 .iat label {
-	display: block;
+    display: block;
+}
+
+.error {
+    margin: 5px;
+    padding: 10px 20px;
+    background: red;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.success {
+    margin: 5px;
+    padding: 10px 20px;
+    background: rgb(10, 119, 25);
+    border-radius: 8px;
+    color: #fff;
 }

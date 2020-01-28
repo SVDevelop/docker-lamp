@@ -7,16 +7,15 @@ include ($_SERVER['DOCUMENT_ROOT'].'/main_menu.php');
 
 function isAuth ()
 {
-    $result = false;
     if( isset($_POST['auth']) && !empty(trim($_POST['login'])) && !empty(trim($_POST['password'])) ) {
 
         include ($_SERVER['DOCUMENT_ROOT'].'/data/logins.php');
         include ($_SERVER['DOCUMENT_ROOT'].'/data/passwords.php');
 
         return $passwords[array_search($_POST['login'], $logins)] == $_POST['password'];
-    } else 
+    } else
     {
-        $result = -1;
+        return -1;
     }
 }
 

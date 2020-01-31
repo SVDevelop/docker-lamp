@@ -4,21 +4,26 @@ print_r($_POST);
 error_reporting(E_ALL);
 
 include ($_SERVER['DOCUMENT_ROOT'].'/main_menu.php');
-
 function isAuth ()
 {
-    if( isset($_POST['auth']) && !empty(trim($_POST['login'])) && !empty(trim($_POST['password'])) ) {
+    $result = '';
+    if (isset($_POST['auth'])) {
+        if( !empty(trim($_POST['login'])) && !empty(trim($_POST['password'])) ) {
 
-        include ($_SERVER['DOCUMENT_ROOT'].'/data/logins.php');
-        include ($_SERVER['DOCUMENT_ROOT'].'/data/passwords.php');
+            include ($_SERVER['DOCUMENT_ROOT'].'/data/logins.php');
+            include ($_SERVER['DOCUMENT_ROOT'].'/data/passwords.php');
 
-        return $passwords[array_search($_POST['login'], $logins)] == $_POST['password'];
-    } else
-    {
-        return -1;
+            if ($passwords[array_search($_POST['login'], $logins)] == $_POST['password']) {
+                $result = include($_SERVER['DOCUMENT_ROOT'].'/include/success.php');
+            } else {
+                $result = include($_SERVER['DOCUMENT_ROOT'].'/include/error.php');
+            }
+        } else {
+            $result = include($_SERVER['DOCUMENT_ROOT'].'/include/error.php');
+        }
     }
+    return $result;
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,13 +67,8 @@ function isAuth ()
 
                 <div class="index-auth">
                     <?php
-                    if (isAuth () != -1) {
-                        if ( isAuth() ) {
-                            include($_SERVER['DOCUMENT_ROOT'].'/include/success.php');
-                        } else {
-                            include($_SERVER['DOCUMENT_ROOT'].'/include/error.php');
-                        }
-                    }
+
+                    isAuth();
 
                     if (isset($_GET['login']) && $_GET['login'] == "yes") { ?>
                     <form action="index.php" method="POST">
